@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ajfer\\OneDrive\\Desktop\\Fall 2022\\MIS221\\pa3_example\\pa3_example.csproj": {}
+    "C:\\Users\\oppen\\OneDrive\\Documents\\TA for 221\\221 Test Code\\pa3_example\\pa3_example.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ajfer\\OneDrive\\Desktop\\Fall 2022\\MIS221\\pa3_example\\pa3_example.csproj": {
+    "C:\\Users\\oppen\\OneDrive\\Documents\\TA for 221\\221 Test Code\\pa3_example\\pa3_example.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ajfer\\OneDrive\\Desktop\\Fall 2022\\MIS221\\pa3_example\\pa3_example.csproj",
+        "projectUniqueName": "C:\\Users\\oppen\\OneDrive\\Documents\\TA for 221\\221 Test Code\\pa3_example\\pa3_example.csproj",
         "projectName": "pa3_example",
-        "projectPath": "C:\\Users\\ajfer\\OneDrive\\Desktop\\Fall 2022\\MIS221\\pa3_example\\pa3_example.csproj",
-        "packagesPath": "C:\\Users\\ajfer\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ajfer\\OneDrive\\Desktop\\Fall 2022\\MIS221\\pa3_example\\obj\\",
+        "projectPath": "C:\\Users\\oppen\\OneDrive\\Documents\\TA for 221\\221 Test Code\\pa3_example\\pa3_example.csproj",
+        "packagesPath": "C:\\Users\\oppen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oppen\\OneDrive\\Documents\\TA for 221\\221 Test Code\\pa3_example\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ajfer\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\oppen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
