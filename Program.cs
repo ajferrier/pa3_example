@@ -5,15 +5,16 @@ bool keepGoing;
 Console.Clear();
 System.Console.WriteLine();
 System.Console.WriteLine("Avaliable Gil: " + gilAmount + "\n");
-System.Console.WriteLine("Welcome to Jeff's Jolly Jackpot Land! Enter one of the following options as an integer:\n1. Slot Machine \n2. Blackjack \n3. Exit");
+System.Console.WriteLine("Welcome to Jeff's Jolly Jackpot Land! Enter one of the following options as an integer:\n1. Slot Machine \n2. Blackjack \n3. Roulette \n4. Exit");
 string menuChoice = Console.ReadLine();
 string[] slotWord = {"Elephant", "Computer", "Football", "Resume", "Capstone", "Crimson"};
 int[] blackjackCard = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+int[] rouletteWheel = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36};
 // int playerInitialHand = 0;
 // int dealerInitialHand = 0;
 
 //menu
-while(menuChoice != "3" && (gilAmount <= 300 && gilAmount > 0))
+while(menuChoice != "4" && (gilAmount <= 300 && gilAmount > 0))
 {
     if (menuChoice == "1")
     {
@@ -32,6 +33,14 @@ while(menuChoice != "3" && (gilAmount <= 300 && gilAmount > 0))
         Console.Clear();
         BlackJack(ref gilAmount, blackjackCard, ref gameBetAmount);
     }
+    else if (menuChoice == "3")
+    {
+        Console.Clear();
+        DisplayRouletteRules();
+        double gameBetAmount = GetBetAmount(ref gilAmount);
+        Console.Clear();
+        Roulette(ref gilAmount, rouletteWheel, ref gameBetAmount);
+    }
     else
     {
         Console.Clear();
@@ -43,7 +52,7 @@ while(menuChoice != "3" && (gilAmount <= 300 && gilAmount > 0))
     if(gilAmount <= 300 && gilAmount > 0)
     {
         System.Console.WriteLine("Avaliable Gil: " + gilAmount + "\n");
-        System.Console.WriteLine("Enter one of the following options as an integer: \n1. Slot Machine \n2. Blackjack \n3. Exit");
+        System.Console.WriteLine("Enter one of the following options as an integer: \n1. Slot Machine \n2. Blackjack \n3. Roulette Wheel \n4. Exit");
         menuChoice = Console.ReadLine();
     }
     
@@ -75,6 +84,13 @@ static void Slot(ref double gilAmount, string[] slotWord, ref double gameBetAmou
     
 }
 
+static void Roulette(ref double gilAmount, int[] rouletteWheel, ref double gameBetAmount)
+{
+    Random randomNum1 = new Random();
+    int num1 = randomNum1.Next(1,36);
+    Spin(ref gilAmount, num1, rouletteWheel, ref gameBetAmount);
+}
+
 static void BlackJack(ref double gilAmount, int[] blackjackCard, ref double gameBetAmount)
 {
     Random randomNum1 = new Random();
@@ -86,6 +102,239 @@ static void BlackJack(ref double gilAmount, int[] blackjackCard, ref double game
     Random randomNum4 = new Random();
     int num4 = randomNum4.Next(0,10);
     Deal(ref gilAmount, num1, num2, num3, num4, blackjackCard, ref gameBetAmount);
+}
+
+static void Spin(ref double gilAmount, int num1, int[] rouletteWheel, ref double gameBetAmount)
+{
+    int spinValue = rouletteWheel[num1];
+    //Console.WriteLine(spinValue);
+    Console.WriteLine("The wheel is spinning...\n\nPlease pick either 'red' or 'black' ");
+    string rouletteChoice = Console.ReadLine().ToLower();
+    if (rouletteChoice == "red")
+    {
+        if (spinValue >= 1 && spinValue <= 10)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is black!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is red!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else if (spinValue <= 18)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is red!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+                
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is black!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else if (spinValue <= 28)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is black!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is red!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + "is red!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+                
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + "is black!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+    }
+    else if (rouletteChoice == "black")
+    {
+        if (spinValue >= 1 && spinValue <= 10)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is black!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+                
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is red!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else if (spinValue <= 18)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is red!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is black!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else if (spinValue <= 28)
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is black!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+                
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is red!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+        else
+        {
+            if (spinValue % 2 == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Sorry, " + spinValue + " is red!");
+                gilAmount = gilAmount - gameBetAmount;
+                System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("You win! " + spinValue + " is black!");
+                gilAmount = gilAmount + (gameBetAmount*2);
+                System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+                System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+                System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+                System.Console.WriteLine("[Hit any key to continue]");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+    }
+    else
+    {
+        Console.Clear();
+        Console.WriteLine("\nYou selection is not on the wheel!");
+        Spin(ref gilAmount, num1, rouletteWheel, ref gameBetAmount);
+    }
+
 }
 
 static void Deal(ref double gilAmount, int num1, int num2, int num3, int num4, int[] blackjackCard, ref double gameBetAmount)
@@ -435,6 +684,23 @@ static void DisplaySlotRules()
     Console.Clear();
 }
 
+static void DisplayRouletteRules()
+{
+    System.Console.WriteLine("Welcome to Jeff's World-Famous Roulette Wheel!");
+    System.Console.WriteLine("You will be betting a valid amount of your gil on our wheel...\n");
+    System.Console.WriteLine("[Hit any key to continue]");
+    Console.ReadKey();
+    Console.Clear();
+    System.Console.WriteLine("------------------- Rules -------------------");
+    System.Console.WriteLine("\nYou will pick either 'red' or 'black'\n");
+    System.Console.WriteLine("Next, it is simple, just wait for the wheel to decide you fate\n"); 
+    System.Console.WriteLine("The wheel will stop on a number between 1 and 36, you have a 50% chance of winning!\n");
+    System.Console.WriteLine("If you guess correctly, you will double your money, if you are wrong... you lose what you bet.\nGood Luck!!!");
+    System.Console.WriteLine("\n\n[Hit any key to advance to the game]");
+    Console.ReadKey();
+    Console.Clear();
+}
+
 static void DisplayBlackjackRules()
 {
     System.Console.WriteLine("Welcome to Jeff's World-Famous Blackjack!");
@@ -442,7 +708,8 @@ static void DisplayBlackjackRules()
     System.Console.WriteLine("[Hit any key to continue]");
     Console.ReadKey();
     Console.Clear();
-    System.Console.WriteLine("Today you'll be playing against only the dealer, you will both recieve two cards to start the hand.\n ");
+    System.Console.WriteLine("--------------- Rules ----------------\n");
+    System.Console.WriteLine("Today you'll be playing against only the dealer, you will both recieve two cards to start the hand.\n");
     System.Console.WriteLine("Once you see your total you can choose to hit or stay\n");
     System.Console.WriteLine("You can continue to make this choice, but don't go over 21!\n"); 
     System.Console.WriteLine("Going over 21 will result in a bust and you will lose your wagered gil.\n");
