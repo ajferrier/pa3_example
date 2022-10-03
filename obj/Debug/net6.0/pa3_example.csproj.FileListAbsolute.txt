@@ -13,3 +13,18 @@ C:\Users\oppen\OneDrive\Documents\TA for 221\221 Test Code\pa3_example\obj\Debug
 C:\Users\oppen\OneDrive\Documents\TA for 221\221 Test Code\pa3_example\obj\Debug\net6.0\pa3_example.pdb
 C:\Users\oppen\OneDrive\Documents\TA for 221\221 Test Code\pa3_example\obj\Debug\net6.0\pa3_example.genruntimeconfig.cache
 C:\Users\oppen\OneDrive\Documents\TA for 221\221 Test Code\pa3_example\obj\Debug\net6.0\ref\pa3_example.dll
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\bin\Debug\net6.0\pa3_example.exe
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\bin\Debug\net6.0\pa3_example.deps.json
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\bin\Debug\net6.0\pa3_example.runtimeconfig.json
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\bin\Debug\net6.0\pa3_example.dll
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\bin\Debug\net6.0\pa3_example.pdb
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.csproj.AssemblyReference.cache
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.AssemblyInfoInputs.cache
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.AssemblyInfo.cs
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.csproj.CoreCompileInputs.cache
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.dll
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\refint\pa3_example.dll
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.pdb
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\pa3_example.genruntimeconfig.cache
+C:\Users\ajfer\OneDrive\Desktop\Fall 2022\MIS221\pa3_example\obj\Debug\net6.0\ref\pa3_example.dll
