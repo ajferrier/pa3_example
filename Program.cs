@@ -1,7 +1,7 @@
 ﻿//  PA 3
 
 double gilAmount = 50;
-bool keepGoing;
+string playAgain = "";
 Console.Clear();
 System.Console.WriteLine();
 System.Console.WriteLine("Avaliable Gil: " + gilAmount + "\n");
@@ -23,7 +23,20 @@ while(menuChoice != "4" && (gilAmount <= 300 && gilAmount > 0))
         double gameBetAmount = GetBetAmount(ref gilAmount);
         Console.Clear();
         Slot(ref gilAmount, slotWord, ref gameBetAmount);
-        //KeepPlaying(ref keepGoing);
+        System.Console.WriteLine("Would you like to play again?\n");
+        System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+        playAgain = Console.ReadLine();
+        while (playAgain == "1")
+        {
+            Console.Clear();
+            DisplaySlotRules();
+            gameBetAmount = GetBetAmount(ref gilAmount);
+            Console.Clear();
+            Slot(ref gilAmount, slotWord, ref gameBetAmount);
+            System.Console.WriteLine("Would you like to play again?\n");
+            System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+            playAgain = Console.ReadLine();
+        }
     }
     else if (menuChoice == "2")
     {
@@ -31,7 +44,23 @@ while(menuChoice != "4" && (gilAmount <= 300 && gilAmount > 0))
         DisplayBlackjackRules();
         double gameBetAmount = GetBetAmount(ref gilAmount);
         Console.Clear();
-        BlackJack(ref gilAmount, blackjackCard, ref gameBetAmount);
+        //BlackJack(ref gilAmount, blackjackCard, ref gameBetAmount);
+        DiceBlackJack(ref gilAmount, ref gameBetAmount);
+        System.Console.WriteLine("Would you like to play again?\n");
+        System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+        playAgain = Console.ReadLine();
+        while (playAgain == "1")
+        {
+            Console.Clear();
+            DisplayBlackjackRules();
+            gameBetAmount = GetBetAmount(ref gilAmount);
+            Console.Clear();
+            //BlackJack(ref gilAmount, blackjackCard, ref gameBetAmount);
+            DiceBlackJack(ref gilAmount, ref gameBetAmount);
+            System.Console.WriteLine("Would you like to play again?\n");
+            System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+            playAgain = Console.ReadLine();
+        }
     }
     else if (menuChoice == "3")
     {
@@ -40,6 +69,20 @@ while(menuChoice != "4" && (gilAmount <= 300 && gilAmount > 0))
         double gameBetAmount = GetBetAmount(ref gilAmount);
         Console.Clear();
         Roulette(ref gilAmount, rouletteWheel, ref gameBetAmount);
+        System.Console.WriteLine("Would you like to play again?\n");
+        System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+        playAgain = Console.ReadLine();
+        while (playAgain == "1")
+        {
+            Console.Clear();
+            DisplayRouletteRules();
+            gameBetAmount = GetBetAmount(ref gilAmount);
+            Console.Clear();
+            Roulette(ref gilAmount, rouletteWheel, ref gameBetAmount);
+            System.Console.WriteLine("Would you like to play again?\n");
+            System.Console.WriteLine("Enter '1' to replay the game, any other key to return to main menu.");
+            playAgain = Console.ReadLine();
+        }
     }
     else
     {
@@ -87,7 +130,7 @@ static void Slot(ref double gilAmount, string[] slotWord, ref double gameBetAmou
 static void Roulette(ref double gilAmount, int[] rouletteWheel, ref double gameBetAmount)
 {
     Random randomNum1 = new Random();
-    int num1 = randomNum1.Next(1,36);
+    int num1 = randomNum1.Next(1,37);
     Spin(ref gilAmount, num1, rouletteWheel, ref gameBetAmount);
 }
 
@@ -483,18 +526,6 @@ static void Deal(ref double gilAmount, int num1, int num2, int num3, int num4, i
         }
         playerUpdatedHand = playerUpdatedHand + playerCard;
 
-        Random randomNum2 = new Random();
-        int dealerHit = randomNum2.Next(0,10);
-        int dealerCard = blackjackCard[dealerHit];
-        if (dealerCard == 0 && dealerUpdatedHand + 11 > 21)
-        {
-            dealerCard = 1;
-        }
-        else
-        {
-            dealerCard = 11;
-        }
-        dealerUpdatedHand = dealerUpdatedHand + dealerCard;
 
         if (playerUpdatedHand == 21)
         {
@@ -522,7 +553,19 @@ static void Deal(ref double gilAmount, int num1, int num2, int num3, int num4, i
             Console.Clear();
             break;
         }
-        else if (dealerUpdatedHand > 21)
+        Random randomNum2 = new Random();
+        int dealerHit = randomNum2.Next(0,10);
+        int dealerCard = blackjackCard[dealerHit];
+        if (dealerCard == 0 && dealerUpdatedHand + 11 > 21)
+        {
+            dealerCard = 1;
+        }
+        else
+        {
+            dealerCard = 11;
+        }
+        dealerUpdatedHand = dealerUpdatedHand + dealerCard;
+        if (dealerUpdatedHand > 21)
         {
             Console.Clear();
             Console.WriteLine("You drew a " + playerCard + " for a total of " + playerUpdatedHand);
@@ -548,7 +591,6 @@ static void Deal(ref double gilAmount, int num1, int num2, int num3, int num4, i
             Console.WriteLine("\nWould you like to hit or stay?");
             hitStay = Console.ReadLine().ToLower();
         }
-        
     }
     if (hitStay == "stay")
     {
@@ -704,16 +746,18 @@ static void DisplayRouletteRules()
 static void DisplayBlackjackRules()
 {
     System.Console.WriteLine("Welcome to Jeff's World-Famous Blackjack!");
-    System.Console.WriteLine("You will be betting a valid amount of your gil on the table...\n");
+    System.Console.WriteLine("You will be betting a valid amount of your gil on the table...");
+    System.Console.WriteLine("Game is played with 10-sided die!\n");
     System.Console.WriteLine("[Hit any key to continue]");
     Console.ReadKey();
     Console.Clear();
     System.Console.WriteLine("--------------- Rules ----------------\n");
-    System.Console.WriteLine("Today you'll be playing against only the dealer, you will both recieve two cards to start the hand.\n");
-    System.Console.WriteLine("Once you see your total you can choose to hit or stay\n");
+    System.Console.WriteLine("Today you'll be playing against only the computer, you will both roll two dice to start the game.\n");
+    System.Console.WriteLine("Once you see your total, you can choose to roll again or settle.\n");
     System.Console.WriteLine("You can continue to make this choice, but don't go over 21!\n"); 
     System.Console.WriteLine("Going over 21 will result in a bust and you will lose your wagered gil.\n");
-    System.Console.WriteLine("If you tie with the dealer you will lose, unless you have blackjack (21)!");
+    System.Console.WriteLine("If you tie with the computer, you will lose (unless you have blackjack which is a total of 21)!\n");
+    System.Console.WriteLine("Computer always takes it's turn last (after player has settled on total).");
     System.Console.WriteLine("[Hit any key to advance to the game]");
     Console.ReadKey();
     Console.Clear();
@@ -731,4 +775,135 @@ static bool KeepPlaying()
     {
         return false;
     }
+}
+
+
+static void DiceBlackJack(ref double gilAmount, ref double gameBetAmount)
+{
+    int playerRoll1 = RollDice();
+    int playerRoll2 =  RollDice();
+    int computerRoll1 = RollDice();
+    int computerRoll2 =  RollDice();
+    System.Console.WriteLine("You rolled: " + playerRoll1 + " and " + playerRoll2);
+    System.Console.WriteLine("Computer rolled: " + computerRoll1 + " and " + computerRoll2 + "\n");
+    int playerTotal = playerRoll1 + playerRoll2;
+    int computerTotal = computerRoll1 + computerRoll2;
+    System.Console.WriteLine("Player Total: " + playerTotal + "\nComputer Total: " +computerTotal);
+    System.Console.WriteLine("\nEnter '1' for another roll & '2' to settle");
+    string input = Console.ReadLine();
+    while (input == "1" && playerTotal <= 21)
+    {
+        Console.Clear();
+        int playerRoll3 = RollDice();
+        System.Console.WriteLine("You rolled: " + playerRoll3);
+        playerTotal = playerRoll3 + playerTotal;
+        System.Console.WriteLine("\nUpdated Player Total: " + playerTotal);
+        if (playerTotal <= 21)
+        {
+            System.Console.WriteLine("\nEnter '1' for another roll & '2' to settle");
+            input = Console.ReadLine();
+        }
+    }
+    if (playerTotal > 21)
+    {
+        gilAmount = gilAmount - gameBetAmount;
+        System.Console.WriteLine("\nYou busted...");
+        System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+    while (computerTotal < 17 && playerTotal <= 21)
+    {
+        Console.Clear();
+        int computerRoll3 = RollDice();
+        System.Console.WriteLine("Computer rolled: " + computerRoll3);
+        computerTotal = computerRoll3 + computerTotal;
+        System.Console.WriteLine("\nUpdated Computer Total: " + computerTotal + "\n\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+    }
+    if (computerTotal > 21)
+    {
+        Console.Clear();
+        Console.WriteLine("They say the computer never loses...\nThey were wrong! The computer busted with " + computerTotal);
+        gilAmount = gilAmount + (gameBetAmount*2);
+        System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+        System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+    else if (computerTotal == 21 && (computerTotal == playerTotal))
+    {
+        Console.Clear();
+        Console.WriteLine("Player wins blackjack ties!!!\nPlayer Total: " + playerTotal);
+        gilAmount = gilAmount + (gameBetAmount*2);
+        System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+        System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+    else if ((computerTotal == playerTotal))
+    {
+        Console.Clear();
+        Console.WriteLine("Computer wins non-blackjack ties...\nComputer Total: " + computerTotal+"\nPlayer Total: "+ playerTotal);
+        gilAmount = gilAmount - gameBetAmount;
+        System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+    else if (computerTotal > playerTotal)
+    {
+        Console.Clear();
+        Console.WriteLine("Computer wins...\nComputer Total: " + computerTotal + "\nPlayer Total: "+ playerTotal);
+        gilAmount = gilAmount - gameBetAmount;
+        System.Console.WriteLine("\n\nYou just bet & lost " + gameBetAmount + " gil...\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+    else if((computerTotal < playerTotal) && playerTotal <= 21)
+    {
+        Console.Clear();
+        System.Console.WriteLine("You beat computer!!\nComputer Total: " + computerTotal + "\nPlayer Total: "+ playerTotal);
+        gilAmount = gilAmount + (gameBetAmount*2);
+        System.Console.WriteLine("\nAmount bet: " + gameBetAmount + " gil");
+        System.Console.WriteLine("You just won double your bet amount: " + gameBetAmount*2 + " gil\n");
+        System.Console.WriteLine("Updated Gil Total: " + gilAmount + "\n");
+        System.Console.WriteLine("[Hit any key to continue]");
+        Console.ReadKey();
+        Console.Clear();
+    }
+}
+
+static int RollDice()
+{
+    Random randomNum1 = new Random();
+    int num1 = randomNum1.Next(0,10);
+    if (num1 == 0)
+    {
+        num1 = 10;
+    }
+    // if (num1 == 1)
+    // {
+    //     Random randomNum2 = new Random();
+    //     int num2 = randomNum1.Next(0,2);
+    //     if (num2 == 0)
+    //     {
+    //         num1 = 1;
+    //     }
+    //     else
+    //     {
+    //         num1 = 11;
+    //     }
+    // }
+    return num1;
 }
